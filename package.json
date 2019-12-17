@@ -1,0 +1,20 @@
+{
+  "name": "@leadiq/sentret",
+  "version": "0.0.1",
+  "description": "Declarative User Click Tracking",
+  "main": "/dist/sentret.js",
+  "types": "/dist/sentret.d.ts",
+  "files": [
+    "/dist/sentret.js",
+    "/dist/sentret.d.ts"
+  ],
+  "scripts": {
+    "dev": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
+}
