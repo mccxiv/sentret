@@ -7,15 +7,16 @@
 <body>
   <div>
     <button class="se-TEST_EVENT">Test event</button>
-
-    <button class="se-DATA_EVENT" data-se-properties="{cheers: true}">
+    <button class="se-DATA_EVENT" data-properties='{"cheers": true}'>
       Test event with data
     </button>
   </div>
   <script type="module" src="../../dist/sentret.js"></script>
   <script type="module">
     import {Sentret} from '../../dist/sentret.js'
-    Sentret()
+    Sentret({log: true}).on('event', (e, d) => {
+      console.log('received', e, d)
+    })
   </script>
 </body>
 </html>
