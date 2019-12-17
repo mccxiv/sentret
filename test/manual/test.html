@@ -14,9 +14,7 @@
   <script type="module" src="../../dist/sentret.js"></script>
   <script type="module">
     import {Sentret} from '../../dist/sentret.js'
-    Sentret({log: true}).on('event', (e, d) => {
-      console.log('received', e, d)
-    })
+    Sentret({log: true}).on('event', () => {})
   </script>
 </body>
 </html>

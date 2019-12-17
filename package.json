@@ -1,5 +1,5 @@
 {
-  "name": "@leadiq/sentret",
+  "name": "sentret",
   "version": "0.0.1",
   "description": "Declarative User Click Tracking",
   "main": "/dist/sentret.js",
@@ -12,7 +12,7 @@
     "dev": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Andrea Stella <adr.stella@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "typescript": "^3.7.3"

@@ -1,23 +1,29 @@
-const defaults: SentretOptions = {
-  log: true,
-  parseAsJson: false,
-  classPrefix: 'se-',
-  propertiesAttribute: 'properties',
+interface SentretInstance {
+  on: (eventType: 'event', cb: SentretClickCallback) => void
+  destroy: () => void
+}
+
+type SentretClickCallback = (eventName: string, data?: any) => any
+
+interface SentretOptions {
+  log: boolean
+  parseAsJson: boolean
+  classPrefix: string
+  propertiesAttribute: string
 }
 
 export function Sentret(options: SentretOptions): SentretInstance {
   const callbacks: SentretClickCallback[] = []
   const listenerInstance = (event: MouseEvent) => globalClickListener(event)
-  const opts = {...defaults, ...options}
+  const opts = {...getDefaults(), ...options}
   let listening = false
 
   return {
     on (eventType, callback: SentretClickCallback) {
-      if (eventType === 'event') {
-        if (!listening) initialize()
-        callbacks.push(callback)
-      }
-      else throw (Error(`Invalid event. Sentret does not emit "${eventType}"`))
+      if (eventType !== 'event') throw Error(`Invalid event. Sentret does not emit "${eventType}"`)
+      if (typeof callback !== 'function') throw Error('Sentret expects a callback function as the second argument')
+      if (!listening) initialize()
+      callbacks.push(callback)
     },
     destroy () {
       document.removeEventListener('click', listenerInstance)
@@ -65,23 +71,16 @@ export function Sentret(options: SentretOptions): SentretInstance {
       if (eventData) log('• Properties:', JSON.parse(eventData))
 
       const name = eventName // Reassign due to Typescript null check
-      callbacks.forEach(fn => {
-        fn(name, eventData)
-      })
+      callbacks.forEach(fn => fn(name, eventData))
     }
   }
 }
 
-type SentretClickCallback = (eventName: string, data?: any) => any
-
-interface SentretInstance {
-  on: (eventType: 'event', cb: SentretClickCallback) => void
-  destroy: () => void
-}
-
-interface SentretOptions {
-  log: boolean
-  parseAsJson: boolean
-  classPrefix: string
-  propertiesAttribute: string
+function getDefaults(): SentretOptions {
+  return {
+    log: true,
+    parseAsJson: false,
+    classPrefix: 'se-',
+    propertiesAttribute: 'properties',
+  }
 }
