@@ -9,7 +9,8 @@
     "/dist/sentret.d.ts"
   ],
   "scripts": {
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "build": "tsc"
   },
   "author": "Andrea Stella <adr.stella@gmail.com>",
   "license": "ISC",
