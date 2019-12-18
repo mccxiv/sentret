@@ -11,7 +11,13 @@ interface SentretOptions {
   propertiesAttribute: string
 }
 
-export function Sentret(options: SentretOptions): SentretInstance {
+interface SentretOptionsArg {
+  log?: boolean
+  eventAttribute?: string
+  propertiesAttribute?: string
+}
+
+export function Sentret(options: SentretOptionsArg): SentretInstance {
   const callbacks: SentretClickCallback[] = []
   const listenerInstance = (event: MouseEvent) => globalClickListener(event)
   const opts = {...getDefaults(), ...options}
