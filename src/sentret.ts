@@ -7,8 +7,7 @@ type SentretClickCallback = (eventName: string, data?: any) => any
 
 interface SentretOptions {
   log: boolean
-  parseAsJson: boolean
-  classPrefix: string
+  eventAttribute: string
   propertiesAttribute: string
 }
 
@@ -30,6 +29,14 @@ export function Sentret(options: SentretOptions): SentretInstance {
     }
   }
 
+  function initialize () {
+    document.addEventListener('click', listenerInstance)
+    listening = true
+
+    log('Sentret is on duty')
+    log('Turn this logging off for production with {log: false}')
+  }
+
   function log (message: string, data?: object) {
     if (opts.log) {
       console.log(
@@ -41,27 +48,15 @@ export function Sentret(options: SentretOptions): SentretInstance {
     }
   }
 
-  function initialize () {
-    document.addEventListener('click', listenerInstance)
-    listening = true
-
-    log('Sentret is duty')
-    log('Turn this logging off for production with {log: false}')
-  }
-
   function globalClickListener (event: MouseEvent) {
     let currentElement = event.target as HTMLElement | null
     let eventName: string | undefined
     let eventData: any
 
     while (!eventName && currentElement) {
-      if (currentElement.matches(`[class^=${opts.classPrefix}]`)) {
-        const eventClass = Array.from(currentElement.classList)
-          .find(className => className.startsWith(opts.classPrefix))
-        if (eventClass) {
-          eventName = eventClass.replace(opts.classPrefix, '')
-          eventData = currentElement.dataset[opts.propertiesAttribute]
-        }
+      if (currentElement.dataset[opts.eventAttribute]) {
+        eventName = currentElement.dataset[opts.eventAttribute]
+        eventData = currentElement.dataset[opts.propertiesAttribute]
       } else currentElement = currentElement.parentElement
     }
 
@@ -79,8 +74,7 @@ export function Sentret(options: SentretOptions): SentretInstance {
 function getDefaults(): SentretOptions {
   return {
     log: true,
-    parseAsJson: false,
-    classPrefix: 'se-',
-    propertiesAttribute: 'properties',
+    eventAttribute: 'event',
+    propertiesAttribute: 'properties'
   }
 }

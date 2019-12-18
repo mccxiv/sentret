@@ -9,8 +9,7 @@
     "/dist/sentret.d.ts"
   ],
   "scripts": {
-    "dev": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsc -w"
   },
   "author": "Andrea Stella <adr.stella@gmail.com>",
   "license": "ISC",

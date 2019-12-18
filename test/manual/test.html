@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
   <title>Title</title>
 </head>
 <body>
   <div>
-    <button class="se-TEST_EVENT">Test event</button>
-    <button class="se-DATA_EVENT" data-properties='{"cheers": true}'>
-      Test event with data
+    <span>What would you like to buy?</span>
+
+    <!-- We declare events as data attributes (configurable) -->
+    <button data-event="SELECTED_BANANA">Banana (green)</button>
+    <button data-event="SELECTED_BANANA" data-properties='{"ripe": true}'>
+      Banana (ripe)
+    </button>
+
+    <button data-event="CHECKOUT" data-properties='{"from": "products-page"}'>
+      Checkout
     </button>
   </div>
   <script type="module" src="../../dist/sentret.js"></script>
