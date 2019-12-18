@@ -1,9 +1,10 @@
 {
   "name": "sentret",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Declarative User Click Tracking",
   "main": "/dist/sentret.js",
   "types": "/dist/sentret.d.ts",
+  "repository": "https://github.com/mccxiv/sentret",
   "files": [
     "/dist/sentret.js",
     "/dist/sentret.d.ts"

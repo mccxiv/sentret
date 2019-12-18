@@ -3,6 +3,8 @@
 ![](docs/assets/sentret.gif) &nbsp; &nbsp; ![](docs/assets/title.png)
 ---
 
+![](https://nodei.co/npm/sentret.png)
+
 When doing client side analytics, you'll be tracking UI and programmatic events.<br>
 Sentret helps you with the UI events.
 
