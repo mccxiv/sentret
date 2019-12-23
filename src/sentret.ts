@@ -70,6 +70,8 @@ export function Sentret(options: SentretOptionsArg): SentretInstance {
       if (currentElement.dataset[opts.eventAttribute]) {
         eventName = currentElement.dataset[opts.eventAttribute]
         eventData = currentElement.dataset[opts.propertiesAttribute]
+        try { if (eventData) eventData = JSON.parse(eventData) }
+        catch (e) { console.error(Error('Unable to parse properties'))}
       } else currentElement = currentElement.parentElement
     }
 

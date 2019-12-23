@@ -26,18 +26,10 @@ Sentret helps you with the UI events.
 </div>
 ```
 
-### Real life usage with data binding
-
-Things become even better when paired with a data binding framework.<br>
-For example with Vue.js:
-```html
-<button
-  :data-event="events.checkout"
-  :data-event-props="{from: $router.currentRoute.name}"
->
-  Checkout
-</button>
-```
+### Reminders
+`data-*` attributes can only ever be strings.<br>
+When using a data binding framework like Vue or React, make sure to convert
+any objects to JSON for `data-properties`
 
 ### And the setup
 ```javascript

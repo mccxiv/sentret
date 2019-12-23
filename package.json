@@ -1,6 +1,6 @@
 {
   "name": "sentret",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Declarative User Click Tracking",
   "main": "/dist/sentret.js",
   "types": "/dist/sentret.d.ts",
