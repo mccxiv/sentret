@@ -45,14 +45,19 @@ export function Sentret(options: SentretOptionsArg): SentretInstance {
     log('Turn this logging off for production with {log: false}')
   }
 
-  function log (message: string, data?: object) {
-    if (opts.log) {
-      console.log(
-        `%c[Sentret]:`,
-        'color: #8c6b5e; font-weight: bold',
-        `${message}`,
-        data || ''
-      )
+  function log (message: string, data?: object | string) {
+    try {
+      if (typeof data === 'string') data = JSON.parse(data)
+      if (opts.log) {
+        console.log(
+          `%c[Sentret]:`,
+          'color: #8c6b5e; font-weight: bold',
+          `${message}`,
+          data || ''
+        )
+      }
+    } catch (e) {
+      console.error(e)
     }
   }
 
@@ -71,7 +76,7 @@ export function Sentret(options: SentretOptionsArg): SentretInstance {
     if (eventName) {
       log('Click event captured')
       log(`• Event: ${eventName}`)
-      if (eventData) log('• Properties:', JSON.parse(eventData))
+      if (eventData) log('• Properties:', eventData)
 
       const name = eventName // Reassign due to Typescript null check
       callbacks.forEach(fn => fn(name, eventData))
