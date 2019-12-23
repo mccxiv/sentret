@@ -49,13 +49,33 @@ Sentret({log: true}).on('event', analytics.track)
 ```
 
 ### Supported Options
-
 ```javascript
 {
   log: true,
   eventAttribute: 'event', // data-event
   propertiesAttribute: 'properties' // data-properties
 }
+```
+
+### Methods
+Documentation is in TypeScript for clarity. Typescript is not required
+```typescript
+interface SentretInstance {
+  // Listen for UI events
+  on: (eventType: 'event', cb: SentretClickCallback) => void
+
+  // Sometimes components from poorly written external libraries don't
+  // propagate clicks. In such cases you may forward them to Sentret using
+  // this method
+  click: (event: MouseEvent) => void
+
+  // If your workflow requires it, you may destroy this Sentret instance
+  // which will clean up any event listeners on the DOM
+  destroy: () => void
+}
+
+// The UI event callback should accept an event name and a data object
+type SentretClickCallback = (eventName: string, data?: object) => any
 ```
 
 

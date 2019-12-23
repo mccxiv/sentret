@@ -1,9 +1,10 @@
 interface SentretInstance {
   on: (eventType: 'event', cb: SentretClickCallback) => void
-  destroy: () => void
+  destroy: () => void,
+  click: (event: MouseEvent) => void
 }
 
-type SentretClickCallback = (eventName: string, data?: any) => any
+type SentretClickCallback = (eventName: string, data?: object) => any
 
 interface SentretOptions {
   log: boolean
@@ -32,7 +33,8 @@ export function Sentret(options: SentretOptionsArg): SentretInstance {
     },
     destroy () {
       document.removeEventListener('click', listenerInstance)
-    }
+    },
+    click: listenerInstance
   }
 
   function initialize () {

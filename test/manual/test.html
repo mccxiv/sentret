@@ -16,11 +16,23 @@
     <button data-event="CHECKOUT" data-properties='{"from": "products-page"}'>
       Checkout
     </button>
+
+    <button id="steal-pear" data-event="STEAL_PEAR">
+      Steal a Pear
+    </button>
   </div>
   <script type="module" src="../../dist/sentret.js"></script>
   <script type="module">
     import {Sentret} from '../../dist/sentret.js'
-    Sentret({log: true}).on('event', () => {})
+    const sentret = Sentret({log: true})
+    sentret.on('event', () => {})
+
+    console.log(sentret)
+
+    document.getElementById('steal-pear').addEventListener('click', e => {
+      console.log('Programmatic .click call')
+      sentret.click(e)
+    })
   </script>
 </body>
 </html>
